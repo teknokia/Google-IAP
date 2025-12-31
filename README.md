@@ -1,20 +1,17 @@
 <h1 align="center">Google-IAP (Play Billing Library Version 8.0.0)</h1>
 
 <p align="center">
-    <img src="https://jitpack.io/v/akshaaatt/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
-         alt="GitHub issues">
-    <a href="https://jitpack.io/#akshaaatt/Google-IAP">
-    <a href="https://play.google.com/store/apps/details?id=com.redalck.dtu_rm">
-       <img src="https://PlayBadges.pavi2410.me/badge/downloads?id=com.redalck.dtu_rm">
-    </a>
-    <a href="https://github.com/akshaaatt/Google-IAP/commits/master">
-    <img src="https://img.shields.io/github/last-commit/akshaaatt/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
+    <img src="https://jitpack.io/v/teknokia/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
+         alt="Jitpack">
+    <a href="https://jitpack.io/#teknokia/Google-IAP">
+    <a href="https://github.com/teknokia/Google-IAP/commits/master">
+    <img src="https://img.shields.io/github/last-commit/teknokia/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
          alt="GitHub last commit">
-    <a href="https://github.com/akshaaatt/Google-IAP/issues">
-    <img src="https://img.shields.io/github/issues-raw/akshaaatt/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
+    <a href="https://github.com/teknokia/Google-IAP/issues">
+    <img src="https://img.shields.io/github/issues-raw/teknokia/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
          alt="GitHub issues">
-    <a href="https://github.com/akshaaatt/Google-IAP/pulls">
-    <img src="https://img.shields.io/github/issues-pr-raw/akshaaatt/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
+    <a href="https://github.com/teknokia/Google-IAP/pulls">
+    <img src="https://img.shields.io/github/issues-pr-raw/teknokia/Google-IAP.svg?style=flat-square&logo=github&logoColor=white"
          alt="GitHub pull requests">
 </p>
       
@@ -28,7 +25,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/akshaaatt/Google-IAP/archive/master.zip"><img src="https://i.postimg.cc/wMCccWJH/4910241.jpg" alt="Google-IAP"></a>
+  <a href="https://github.com/teknokia/Google-IAP/archive/master.zip"><img src="https://i.postimg.cc/wMCccWJH/4910241.jpg" alt="Google-IAP"></a>
 </h1>
 	    
 ---
@@ -61,7 +58,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.akshaaatt:Google-IAP:1.8.0'
+    implementation 'com.github.teknokia:Google-IAP:1.9.0'
 }
 ```
         
