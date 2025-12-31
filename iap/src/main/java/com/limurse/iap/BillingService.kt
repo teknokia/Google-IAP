@@ -3,13 +3,13 @@ package com.limurse.iap
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import com.android.billingclient.api.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.collections.forEach
+import androidx.core.net.toUri
 
 class BillingService(
     private val context: Context,
@@ -27,9 +27,15 @@ class BillingService(
 
     override fun init(key: String?) {
         decodedKey = key
+        val pendingPurchasesParams = PendingPurchasesParams.newBuilder()
+            .enableOneTimeProducts()
+            .enablePrepaidPlans()
+            .build()
         mBillingClient = BillingClient.newBuilder(context)
             .setListener(this)
+            .enablePendingPurchases(pendingPurchasesParams)
             .build()
+
         mBillingClient.startConnection(object : BillingClientStateListener{
             override fun onBillingServiceDisconnected() {
                 log("onBillingServiceDisconnected")
@@ -138,10 +144,10 @@ class BillingService(
             val subscriptionUrl = ("http://play.google.com/store/account/subscriptions"
                     + "?package=" + activity.packageName
                     + "&sku=" + sku)
-            intent.data = Uri.parse(subscriptionUrl)
+            intent.data = subscriptionUrl.toUri()
             activity.startActivity(intent)
             activity.finish()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             Log.w(TAG, "Unsubscribing failed.")
         }
     }
@@ -307,17 +313,17 @@ class BillingService(
         mBillingClient.queryProductDetailsAsync(params.build()) { billingResult, productDetailsList ->
             if (billingResult.isOk()) {
                 isBillingClientConnected(true, billingResult.responseCode)
-                productDetailsList?.let { list ->
+                productDetailsList.let { list ->
                     // Log the type to understand what we're dealing with
                     log("Product details list type: ${list::class.java.name}")
                     log("Product details list: $list")
-                    
+
                     // Try to access using reflection or other methods
                     try {
                         val sizeMethod = list::class.java.getMethod("size")
                         val size = sizeMethod.invoke(list) as Int
                         log("Product details list size: $size")
-                        
+
                         for (i in 0 until size) {
                             val getMethod = list::class.java.getMethod("get", Int::class.java)
                             val productDetail = getMethod.invoke(list, i)
@@ -419,17 +425,17 @@ class BillingService(
             when {
                 billingResult.isOk() -> {
                     isBillingClientConnected(true, billingResult.responseCode)
-                    val productDetails: ProductDetails? = productDetailsList?.let { list ->
+                    val productDetails: ProductDetails? = productDetailsList.let { list ->
                         // Log the type to understand what we're dealing with
                         log("Product details list type: ${list::class.java.name}")
                         log("Product details list: $list")
-                        
+
                         // Try to access using reflection or other methods
                         try {
                             val sizeMethod = list::class.java.getMethod("size")
                             val size = sizeMethod.invoke(list) as Int
                             log("Product details list size: $size")
-                            
+
                             for (i in 0 until size) {
                                 val getMethod = list::class.java.getMethod("get", Int::class.java)
                                 val productDetail = getMethod.invoke(list, i)
